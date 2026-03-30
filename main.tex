@@ -1,0 +1,42 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{preamble}
+%\setcounter{tocdepth}{1}
+
+\pagestyle{headings}
+
+\Title{Cohen Structure Theorems}
+\subtitle{}
+\author{
+Tomàs Planelles Alonso
+%\begin{tabular}{cc}
+%Tomàs Planelles Alonso & Name 2
+%\end{tabular}
+}
+\date{\today}
+\begin{document}
+\usetagform{blue}
+\maketitle
+\begin{abstract}
+    \todo{Abstract}
+\end{abstract}
+\tableofcontents
+\newpage
+
+\input{sec/1TopologicalGroups}
+
+\input{sec/2Filtrations}
+
+\input{sec/3GradedRings}
+
+\input{sec/4RegularRings}
+
+\input{sec/5WittVectors}
+
+\appendix
+\input{sec/apendix.tex}
+
+\printbibliography[
+title = {References}
+]
+\nocite{*}
+\end{document}

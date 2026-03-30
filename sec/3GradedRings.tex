@@ -1,0 +1,342 @@
+\section{Graded Rings and Modules}
+
+In our particular case we would like to know which conditions must hold so that $M\hookrightarrow\hat M$ ---equivalently, when is the $\fraka$-topology Hausdorff--- as well as prove some properties of $\hat A$ and $\hat M$ ---in fact any property of $\hat M$ will hold as $\hat A$ is the completion of the $A$-module $A$---. To do so, the notion of \emph{graded ring} and \emph{graded $A$-module} comes in handy.
+
+\begin{defi}
+    A \emph{graded ring} is a tuple $(A,(A_n)_{n\geq 0})$ where $A$ is a ring and $(A_n)_{n\geq 0}$ a family of ---additive--- subgroups such that 
+    \[
+    A=\bigoplus_{n\geq 0}A_n
+    \]
+    and $A_mA_n\subseteq A_{n+m}$ for all $n,m\geq 0$. We will denote
+    \[
+    A_+:=\bigoplus_{n>0}A_n.
+    \]
+\end{defi}
+It is clear that $A_0$ is a ring, $A_n$ are $A_0$-modules and $A_+$ is an ideal of $A$.
+
+Similarly,
+\begin{defi}
+    Let $(A,(A_n)_{n\geq 0})$ be a graded ring. A \emph{graded $A$-module} is an $A$-module $M$ together with a family of ---additive-- subgroups $(M_n)_{n\geq 0}$ such that $A_nM_m\subseteq M_{m+n}$ for all $m,n\geq 0$ and
+    \begin{equation}\label{gradmod}
+    M=\bigoplus_{n\geq 0}M_n.
+    \end{equation}
+    If $M$ is a graded $A$-module, we say that $m\in M$ is \emph{homogeneous of degree $n$} if $m\in M_n$. By \eqref{gradmod} any $m\in M$ can be written uniquely as a finite sum $\sum_{n\geq 0}m_n$ where $m_n\in M_n$. The non-zero components $m_n$ are called \emph{homogeneous components} of $m$.
+\end{defi}
+
+\begin{prop}
+    Let $A$ be a graded ring, then $A$ is a Noetherian ring if and only if $A_0$ is a Noetherian ring and $A$ is finitely generated as an $A_0$-algebra.
+\end{prop}
+\begin{proof}
+    The map $A\twoheadrightarrow A_0$ has kernel $A_+$ thus $A_0\cong A/A_+$ so $A_0$ is Noetherian. Say $A_+=(a_1,\ldots,a_r)$ we can also take each $a_i$ as a homogeneous element of degree $k_i$. It is clear that $A_0\subseteq A_0[a_1,\ldots,a_r]$. Given $n$ fixed and supposing that $A_k\subseteq A_0[a_1,\ldots,a_r]$ for all $k< n$ we see that each $y\in A_n$ can be written as $y=\sum_{i=1}^r y_ia_i$ where each $y_i\in A_{n-k_i}$. By supposition we get $y\in A_0[a_1,\ldots,a_r]$. Therefore, by induction, $A=A_0[a_1,\ldots,a_r]$ is a finitely generated $A_0$-algebra. The converse holds by Hilbert's basis theorem.\todo{Appendix}
+\end{proof}
+
+\subsection{Equivalence of topologies}
+
+It is clear that given an $A$-module $M$ with the $\fraka$-topology and an $A$-submodule $N$ then the $\fraka$-topology on $M/N$ is equivalent to the topology induced on $M/N$, since
+\[
+\frac{\fraka^nM+N}{N}=\fraka^n\frac{M+N}{M}.
+\]
+Similarly given to $A$-modules $M$ and $N$ with the $\fraka$-topology we have
+\[
+\fraka^n(M\oplus N)=\fraka^n M\oplus \fraka^n N
+\]
+so the $\fraka$-topology on $M\oplus N$ is equal to the product of both topologies. In fact, recall that given an exact sequence of $A$-modules $0\to N\to M\overset{\varphi}{\to} L\to 0$ we have $M\cong N\oplus L$ ---i.e. the sequence is \emph{split}--- if and only if there exists an $A$-module homomorphism $\psi\colon L \to M$ such that $\varphi\circ\psi=\id_L$. From this follows that 
+\begin{equation}\label{commoplus}
+\widehat{M\oplus N}\cong \hat M\oplus \hat N
+\end{equation}
+by  functoriality of $\,\hat{}\,$ and corollary \ref{corohat} applied to the trivial extension of $M$ by $N$.
+
+
+What's not trivial is that the $\fraka$-topology of an $A$-submodule $N$ equals the $\fraka$-topology on $M$ restricted to $N$. 
+
+Given an ideal $\fraka$ of a ring $A$ and an $\fraka$-filtration $(M_n)_{n\geq 0}$ of an $A$-module $M$ we define the graded ring
+\[
+A^*:= \bigoplus_{n\geq 0}\fraka^n
+\]
+and the graded $A^*$-module
+\[
+M^*:=\bigoplus_{n\geq 0} M_n.
+\]
+
+If $\fraka$ is finitely generated, say by $a_1,\ldots,a_r$, then $A^*=A[a_1,\ldots,a_r]$. Thus if $A$ is Noetherian, $A^*$ is also Noetherian by Hilbert's basis theorem.
+
+\begin{lem}\label{lemmaArtin}
+    Let $A$ be a Noetherian ring, $M$ a finitely generated $A$-module, $(M_n)_{n\geq 0}$ an $\fraka$-filtration. Then, $M^*$ is a finitely generated $A^*$-module if and only if the filtration $(M_n)_{n\geq 0}$ is stable.
+\end{lem}
+\begin{proof}
+    Consider de $A^*$-submodules 
+    \[
+    M_n^*:=M_0\oplus \cdots \oplus M_n\oplus\fraka M_n\oplus\cdots\oplus \fraka^mM_n\oplus\cdots
+    \]
+    which are finitely generated as an $A^*$-module because each $M_n$ is. We have an ascending chain so $M^*=\bigcup \{M_n^*\}_{n\geq 0}$ is finitely generated iff the chain stabilizes iff $M_{n_0}^*=M^*$ for some $n_0\geq 0$ iff $M_{n_0+n}=\fraka^nM_{n_0}$ for all $n\geq 0$ iff the filtration is stable.
+\end{proof}
+
+\begin{prop}[Artin-Rees lemma]
+    Let $A$ be a Noetherian ring, $M$ an $A$-module and $(M_n)_{n\geq0}$ a stable $\fraka$-filtration of $M$. Then, for any $A$-submodule $N$ of $M$, $(N\cap M_n)_{n\geq 0}$ is a stable $\fraka$-filtration of $N$. In particular, the $\fraka$-topology of $N$ is the restriction of the $\fraka$-topology of $M$.
+\end{prop}
+\begin{proof}
+    It is clear that $(N\cap M_n)_{n\geq 0}$ is an $\fraka$-filtration. So we can consider the $A^*$-submodule $N^*$ of $M^*$ which is finitely generated as $M^*$ is. Therefore, by lemma \ref{lemmaArtin}, $(N\cap M_n)_{n\geq 0}$ is stable.
+\end{proof}
+
+The Artin-Rees lemma is most commonly stated as the following 
+\begin{coro}
+    There exists an integer $k\geq 0$ such that for all $n\geq 0$
+    \[
+    (\fraka^nM)\cap N=\fraka^{n-k}((\fraka^kM)\cap N).
+    \]
+\end{coro}
+\begin{proof}
+    Take $M_n=\fraka^nM$.
+\end{proof}
+
+Now we can apply corollary \ref{corohat} to an exact sequence of finitely generated $A$-modules where $A$ is a Noetherian ring;
+\begin{prop}\label{exactseqofmod}
+    Let $0\to N \to M \to P\to 0$ be an exact sequence of finitely generated $A$-modules and $A$ be a Noetherian ring. For any ideal $\fraka$ of $A$, the sequence of $\fraka$-adic completions
+    \[
+    \begin{tikzcd}
+        0 \rar & \hat N\rar & \hat M\rar & \hat P\rar & 0
+    \end{tikzcd}
+    \]
+    is exact.
+\end{prop}
+
+\subsection{Krull's theorem}
+
+As we already stated, we would like to know when $M\hookrightarrow \hat M$. In order to answer this question we will try to characterize the kernel of $M\to \hat M$ which we already know it's the intersection of $(\fraka^nM)_{n\geq 0}$. To do so we will use the tensor product.
+
+Since we have a homomorphism $\phi_A\colon A\to\hat A$ we can turn $\hat A$ into an $A$-algebra and by extension of scalars the tensor product $\hat A\otimes_A M$ can be regarded as an $\hat A$-module. We get the following sequence of homomorphisms
+\[
+\begin{tikzcd}
+    \hat A\otimes_A M\ar[rr, "\id_{\hat A} \otimes_A \phi_M"] &&\hat A\otimes_A \hat M\rar & \hat A\otimes_{\hat A} \hat M\cong \hat M. 
+\end{tikzcd}
+\]
+\begin{prop}\label{tensor}
+    Let $A$ be a ring and $M$ a finitely generated $A$-module then $\hat A\otimes_A M\to \hat M$ is onto. If also $A$ is a Noetherian ring, $\hat A\otimes_A M\to \hat M$ is an isomorphism.
+\end{prop}
+\begin{proof}
+    By \eqref{commoplus} and distributive we have an isomorphism 
+    \[
+    \hat A\otimes_A A^n\cong \widehat{A^n}.
+    \]
+    Since $M$ is finitely generated we have an exact sequence
+    \[
+    \begin{tikzcd}
+        0 \rar & N \rar & A^n \rar & M \rar &0
+    \end{tikzcd}
+    \]
+    which gives rise to the commutative diagram\todo{prove comm. of diag.}
+    \[
+    \begin{tikzcd}
+        & \hat A\otimes_A N \ar[r, "\iota"] \ar[d, "\alpha"] & \hat A\otimes_A A^n \ar[r, "\pi", two heads] \ar[d, "\beta", hook, two heads] & \hat A\otimes_A M \ar[r] \ar[d, "\gamma"] & 0 \\
+        0 \rar & \hat N \ar[r, "\iota'"] & A^n \ar[r, "\pi'", two heads] & \hat M\rar & 0.
+    \end{tikzcd}
+    \]
+    The first row is exact since the functor $\hat A\otimes_A-$ is right exact and $\pi'$ is onto by \ref{corohat}. Hence $\gamma$ is onto. If $A$ is Noetherian we now that the second bottom row is exact by proposition \ref{exactseqofmod} and, since $N$ is finitely generated, $\alpha$ is onto. This implies that $\ker(\pi')=\beta[\im(\iota)]$. So 
+    \begin{align*}
+        \ker(\gamma)= \pi[\ker(\gamma\circ\pi)]=\pi[\ker(\pi'\circ \beta)]=\pi[\beta^{-1}[\ker(\pi')]]=\pi[\im(\iota)]=0.
+    \end{align*}
+    Hence $\gamma$ is one-to-one.
+\end{proof}
+
+Note that when $A$ is Noetherian, the functor $\hat A\otimes_A-\cong \,\hat{}\,$ is exact on the category of finitely generated $A$-modules.
+
+\begin{prop}\label{properties}
+    Let $A$ be a Noetherian ring endowed with the $\fraka$-adic topology, then the following hold:
+    \begin{enumerate}[(i)]
+        \item $\hat \fraka = \hat A\fraka\cong \hat A\otimes_A\fraka$,
+        \item $\widehat{\fraka^n}=\hat\fraka^n$,
+        \item $\fraka^n/\fraka^{n+1}\cong \hat\fraka^n/\hat\fraka^{n+1}$,
+        \item $\fraka\subseteq \mathfrak R_{\hat A}$ where $\mathfrak R_{\hat A}$ is the \emph{Jacobson radical} of $\hat A$\footnote{The intersection of all the maximal ideals of $\hat A$.}. 
+    \end{enumerate}
+\end{prop}
+\begin{proof}
+    $\fraka$ is finitely generated as an $A$-module so $\hat\fraka\cong \hat A\otimes_A \fraka$ by proposition \ref{tensor}. Moreover, the image of 
+    \[
+    \hat A\otimes_A \fraka \to \hat\fraka
+    \]
+    is $\hat A\fraka$. Hence $(i)$ is proved. Similarly we get
+    \[
+    \widehat{\fraka^n}=\hat A\fraka^n=(\hat A\fraka)^n=\hat \fraka^n.
+    \]
+    By corollary \ref{corohat} and $(ii)$ we have $A/\fraka^n\cong \hat A/\hat \fraka^n$. Hence $(iii)$ is proved by taking $A=\fraka^{n-1}$. Finally, recall that $a\in\mathfrak R_{\hat A}$ iff $1-ab$ is a unit in $\hat A$ for all $b\in \hat A$\todo{Prove it?}. Given $a\in\hat\fraka$,
+    \[
+    (1-a)^{-1}=1+a+a^2+\cdots
+    \]
+    converges in $\hat A$ since its complete with respect to its $\hat\fraka$-topology. So $1-a$ is a unit in $\hat A$. Thus $\hat\fraka\subseteq\mathfrak R_{\hat A}$.
+\end{proof}
+
+In fact, it suffices that $\fraka$ is finitely generated. Proposition \ref{properties} is stating that, if $\fraka$ is finitely generated, $\hat A$ is complete with respect to its $\fraka$-topology; equivalently, the initial topology on $\hat A$ coincides with the $\fraka$-topology. 
+
+\begin{eg}
+    One can have a local ring $(A,\mathfrak m)$ such that $\hat A$ is not complete with respect to either its $\mathfrak m$-topology nor its $\hat{\mathfrak m}$-topology. See example \hyperlink{https://stacks.math.columbia.edu/tag/05JA}{here}. In fact, one has that, given an $A$-module $M$, $\hat M$ is complete with respect to its $\fraka$-topology if and only if
+    \[
+    \widehat{\fraka^nM}:=\ker(\hat M\to M/\fraka^nM)=\hat\fraka^nM
+    \]
+    for all $n\geq 0$ ---\hyperlink{https://stacks.math.columbia.edu/tag/0318}{Lemma 10.96.5.}---. 
+\end{eg}
+
+Moreover,
+\begin{coro}
+    The $\mathfrak m$-adic completion of a local ring $(A,\mathfrak m)$ is local with maximal ideal $\hat{\mathfrak m}$.
+\end{coro}
+\begin{proof}
+    We know that $\hat A/\hat{\mathfrak m}\cong A/\mathfrak m$ is a field so $\hat{\mathfrak m}$ is a maximal ideal contained in $\mathfrak R_{\hat A}$. Thus $\hat A$ is a local ring.
+\end{proof}
+
+We are ready to answer when $M\hookrightarrow\hat M$ i.e., when is the $\fraka$-topology Hausdorff:
+\begin{thm}[Krull's theorem]\label{krull}
+    Let $A$ be a Noetherian ring, $\fraka$ an ideal and $M$ a finitely generated $A$-module endowed with the $\fraka$-topology. Then the kernel of the map $M\to \hat M$ can be characterized as follows
+    \[
+    \ker(M\to\hat M)=\{m\in M : (1+\alpha)m=0 \text{ for some }\alpha\in\fraka\}.
+    \]
+\end{thm}
+\begin{proof}
+    We already know that $\ker(M\to\hat M)=\bigcap_{n\geq 0}\fraka^nM=: N$. Since the topology induced by $M$ and the $\fraka$-topology are equivalent on $N$ by proposition \ref{lemmaArtin} and since $N$ is the intersection of all neighborhoods of $0$ we have that the neighborhood of zero $\fraka N$ can only be $N$, so $\fraka N=N$. Thus \todo{prove coro 2.5} there exists an $a\in\fraka$ such that $(1-a)N=0$. Conversely, if $(1-a)m=0$ then $m=a^nm\in\fraka^nM$ for all $n\geq 0$ so $m\in N$.
+\end{proof}
+
+\begin{coro}
+    Let $A$ be a Noetherian ring, $M$ a finitely generated $A$-module and $\fraka\subseteq \mathfrak R_A$ an ideal of $A$. Then the $\fraka$-topology on $M$ is Hausdorff. In particular, if $(A, \mathfrak m)$ is a local ring, then both the $\mathfrak m$-topology on $M$ and $A$ are Hausdorff.
+\end{coro}
+\begin{proof}
+    Since $\fraka\subseteq\mathfrak R_A$, $1+\fraka$ contains no zero divisors so $\ker(M\to \hat M)=0$ and apply theorem \ref{Hausdorff}.
+\end{proof}
+
+We end this subsection with the following observation which is a direct consequence of Krull's theorem.
+
+\textit{Remark.} Recall that given a ring $A$ and a subset $S\subseteq A$ multiplicatively closed, we define an equivalence relation on $A\times S$ by 
+\[
+(a,s)\sim (b,t) \iff (at-bs)s'=0\text{ for some }s'\in S.
+\]
+The quotient set is denoted by $S^{-1}A$ and becomes a ring with the obvious operations called \emph{ring of fractions}. We will denote the equivalence class $[(a,s)]$ by $a/s$. Categorically speaking this ring is characterized by the following universal property:
+\begin{prop}[Universal property of the ring of fractions]
+    For any ring homomorphism $f\colon A\to B$ such that $f[S]\subseteq B^\times$. There exists a unique $\tilde{f}\colon S^{-1}A\to B$ such that the following diagram commutes
+    \begin{equation}
+    \begin{tikzcd}\label{rof}
+        A \ar[r, "f"] \ar[d, "\iota"'] & B \\
+        S^{-1}A \ar[ru, "\tilde{f}"'] &
+    \end{tikzcd}
+    \end{equation}
+    where $\iota\colon A\to S^{-1}A$ is the map $\iota(a)=a/1$.
+\end{prop}
+
+If we consider the subset $S:=1+\fraka$ then by the universal property of the ring of fractions, since 
+\[
+(1-a)^{-1}=1+a+a^2+\cdots
+\]
+converges in $\hat A$ ---i.e., is a unit in $\hat A$--- there's a ring homomorphism $S^{-1}A\hookrightarrow \hat A$. It's injectiveness comes from the commutativity of \eqref{rof} and Krull's theorem which states that $\iota\colon A\to S^{-1}A$ and $\phi\colon A\to \hat A$ have the same kernel. Thus we can identify $S^{-1}A$ as a subring of $\hat A$.\todo{$\widehat{S^{-1}A}=\hat A$ and $\widehat{A_{\mathfrak m}}=\hat A_{\mathfrak m}$}
+
+\subsection{The associated graded ring}
+
+By now we know that if $A$ is a Noetherian local ring then $\hat A$ is complete, Hausdorff and local. We wish to know wether is Noetherian or not. The following definition will come in handy.
+\begin{defi}
+    Let $A$ be a ring and $\fraka$ an ideal of $A$. We define the following graded ring
+    \[
+    G(A):= G_\fraka (A):=\bigoplus_{n\geq 0}\fraka^n/\fraka^{n+1}.
+    \]
+\end{defi}
+
+It is clear that $G(A)$ has a natural $A/\fraka$-module structure. However with the following product $G(A)$ becomes a graded ring:
+\begin{defi}
+    Given $([a_n])_{n\geq 0}$ and $([b_n])_{n\geq 0}$ elements of $G(A)$, their \emph{product}, $([c_n])_{n\geq 0}$, is defined as
+    \[
+    c_n:=\sum_{k=0}^na_kb_{n-k}
+    \]
+    which does not depend on the choice of representatives.
+\end{defi}\todo{Veure la relació amb l'anell de polinomis}
+
+Similarly, if $M$ is an $A$-module and $(M_n)_{n\geq 0}$ an $\fraka$-filtration. We define a graded $G(A)$-module as follows
+\[
+G(M):=\bigoplus_{n\geq 0}M_n/M_{n+1}.
+\]
+We shall use the notation $G_n(M):=M_n/M_{n+1}$.
+\begin{prop}\label{properties1}
+    Let $A$ be a Noetherian ring and $\fraka$ an ideal. Then
+    \begin{enumerate}[(i)]
+        \item $G(A)$ is Noetherian
+        \item $G_\fraka(A)\cong G_{\hat\fraka}(\hat A)$ as rings.
+        \item If $M$ is a finitely generated $A$-module and $(M_n)_{n\geq 0}$ a stable $\fraka$-filtration of $M$, then $G(M)$ is a finitely generated graded $G(A)$-module.
+    \end{enumerate}
+\end{prop}
+\begin{proof}
+    Let $x_1,\dots,x_r\in A$ such that $\fraka=(x_1,\dots,x_r)$. Then 
+    \[
+    G(A)\cong(A/\fraka)[[x_1],\dots,[x_r]]
+    \]
+    where the equivalence classes are in $\fraka/\fraka^2$. Thus by the Hilbert basis theorem $G(A)$ is Noetherian. This proves $(i)$. The statement $(ii)$ is clear from proposition \ref{properties1}. To prove $(iii)$ let $n_0$ be such that $M_{n+n_0}=\fraka^nM_{n_0}$ for all $n\geq 0$. Hence $G(M)$ is generated by $\bigoplus_{n\leq n_0}G_n(M)$ over $G(A)$. Each $M_n$ is finitely generated as an $A$-module, hence each $G_n(M)$ is finitely generated as an $A/\fraka$-module. Thus $G(M)$ is finitely generated as a $G(A)$-module.
+\end{proof}
+
+Let $H$ and $K$ be \emph{filtred groups}; i.e., topological abelian groups with fundamental systems of $0$, $(H_n)_{n\geq 0}$ and $(K_n)_{n\geq 0}$ respectively. We say that $\varphi\colon H \to K$ is a \emph{homomorphism of filtered groups} if it's a group homomorphism and $\varphi[H_n]\subseteq K_n$ for all $n\geq 0$. Consider the groups
+\[
+G(H):=\bigoplus_{n\geq 0}H_n/H_{n+1} \quad\text{ and }\quad G(K):=\bigoplus_{n\geq 0}K_n/K_{n+1}.
+\]
+It is clear that $\varphi$ induces the following group homomorphisms:
+\[
+\hat\varphi\colon \hat H\to \hat K \quad \text{ and }\quad G(\varphi)\colon G(H)\to G(K).
+\]
+
+\begin{prop}\label{filteredgroups}
+    If $G(\varphi)$ is one-to-one (resp. onto), then $\hat\varphi$ is one-to-one (resp. onto).
+\end{prop}
+
+\begin{proof}
+    Consider the commutative diagram of exact sequences for all $n\geq 0$
+    \[
+    \begin{tikzcd}
+        0 \rar & H_n/H_{n+1} \rar \ar[d, "G_n(\varphi)"] & H/H_{n+1} \rar \ar[d, "\varphi_{n+1}"] & H/H_n \rar \ar[d, "\varphi_n"] & 0 \\
+        0 \rar & K_n/K_{n+1} \rar & K/K_{n+1} \rar & K/K_n \rar & 0.
+    \end{tikzcd}
+    \]
+    The snake lemma gives the exact sequence
+    \[
+    \begin{tikzcd}
+       0 \rar & \ker G_n(\varphi) \rar & \ker \varphi_{n+1} \rar
+             \ar[draw=none]{d}[name=X, anchor=center]{}
+    & \ker \varphi_n \ar[rounded corners,
+            to path={ -- ([xshift=2ex]\tikztostart.east)
+                      |- (X.center) \tikztonodes
+                      -| ([xshift=-2ex]\tikztotarget.west)
+                      -- (\tikztotarget)}]{dll}[at end]{} \\      
+  &\coker G_n(\varphi) \rar & \coker \varphi_{n+1} \rar & \coker \varphi_n \rar & 0.
+    \end{tikzcd}
+    \]
+    If $G(\varphi)$ is one-to-one (resp. onto), $G_n(\varphi)$ is also one-to-one (resp. onto). Moreover, $\ker(\varphi_0)=0$ (resp. $\coker(\varphi_0)=0$) since $H_0=H$ and $K_0=K$. By induction on $n$ we prove that $\ker(\varphi_n)=0$ (resp. $\coker(\varphi_n)=0$)\footnote{We can avoid the snake lemma if we use the ---Short--- Five lemma.}.
+\end{proof}
+
+\begin{prop}\label{proplem}
+    Let $A$ be a ring, $\fraka$ an ideal of $A$, $M$ an $A$-module with an $\fraka$-filtration $(M_n)_{n\geq0}$ such that $G(M)$ is a finitely generated $G(A)$-module. If $A$ is complete and Hausdorff with respect to its $\fraka$-topology and $\bigcap \{M_n\}_{n\geq 0}=0$, then $M$ is a finitely generated $A$-module.
+\end{prop}
+\begin{proof}
+    Let $\nu_1,\dots,\nu_r$ be a set of homogeneous generators of $G(M)$ and let $k_1,\dots, k_r$ denote their respective degrees. For all $i\in\llbracket 1,r\rrbracket$ write $\nu_i=x_i+M_{k_i+1}$ where $x_i\in M_{k_i}$. Let's denote by $L^i$ the $A$-module $A$ endowed with the topology given by the $\fraka$-filtration $(L_n^i)_{n\geq 0}:=(\fraka^{n-k_i})_{n\geq 0}$ ---where $\fraka^n=A$ if $n\leq 0$---. Consider
+    \[
+    L:= \bigoplus_{i\in\llbracket 1,r\rrbracket}L^i\cong A^r
+    \]
+    with the direct sum topology. Let $\varphi\colon L\to M$ be the $A$-module homomorphism defined by mapping each $e_i\in L$ to $x_i\in M$. This ensures that elements of $L_n:=\bigoplus_{i\in\llbracket 1,r\rrbracket}L^i_n$ get mapped to elements of $M_n$, hence $\varphi$ is a homomorphism of filtered groups. Thus it induces a homomorphism of $G(A)$-modules $G(\varphi)\colon G(L)\to G(M)$. By construction it is onto, therefore $\hat \varphi$ is onto by proposition \ref{filteredgroups}. Consider now the diagram
+    \[
+    \begin{tikzcd}
+        L \ar[r, "\varphi"] \ar[d, "\phi_L"'] & M \ar[d, "\phi_M"] \\
+        \hat L \ar[r, "\hat\varphi"] & \hat M.
+    \end{tikzcd}
+    \]
+    Since each $L^i\cong A$ has the $\fraka$-topology and, which is complete and Hausdorff, $L$ is complete and Hausdorff so $\phi_L$ is an isomorphism. On the other hand, since $M$ is Hausdorff, $\phi_M$ is one-to-one. Hence
+    \[
+    \im(\varphi)=\phi_M^{-1}[\im(\hat\varphi\circ\phi_L)]=\phi_M^{-1}[\hat M]=M.
+    \]
+    Thus, $\varphi$ is onto and $x_1,\dots,x_r$ generate $M$.
+\end{proof}
+
+This gives a nice corollary which proves our initial question.
+\begin{coro}
+    Under the same conditions as in proposition \ref{proplem}, if $G(M)$ is a Noetherian $G(A)$-module, then $M$ is a Noetherian $A$-module.
+\end{coro}
+\begin{proof}
+    It sufficies to prove that every submodule is finitely generated. Given a submodule $N\subseteq M$ we can filter it with $(N_n)_{n\geq 0}:=(N\cap M_n)_{n\geq 0}$. This give rise to monomorphisms $N_n/N_{n+1}\hookrightarrow M_n/M_{n+1}$ hence to a monomorphism $G(N)\hookrightarrow G(M)$. Since $G(M)$ is Noetherian, $G(N)$ is finitely generated. Since 
+    \[
+    \bigcap\{N_n\}_{n\geq 0}\subseteq \bigcap\{M_n\}_{n\geq 0}=0
+    \]
+    $N$ is Hausdorff. Thus, by proposition \ref{proplem}, $N$ is finitely generated.
+\end{proof}
+
+If we apply this corollary with the complete ring $\hat A$, the Hausdorff $\hat A$-module $M=\hat A$ with the $\hat\fraka$-topology knowing that $G_\fraka(A)\cong G_{\hat\fraka}(\hat A)$ is Noetherian ---supposing $A$ Noetherian--- by proposition \ref{properties1} we get
+\begin{thm}
+    Let $A$ be a Noetherian ring, $\fraka$ an ideal of $A$, then the $\fraka$-completion $\hat A$ of $A$ is Noetherian.
+\end{thm}
